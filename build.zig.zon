@@ -1,0 +1,13 @@
+.{
+    .name = .leaf_loader_proxy_native,
+    .version = "1.0.0",
+    .fingerprint = 0x1c57df35b93c57c6,
+    .minimum_zig_version = "0.16.0",
+    .dependencies = .{},
+    .paths = .{
+        "src",
+        "build.zig",
+        "build.zig.zon",
+        "LICENSE",
+    },
+}

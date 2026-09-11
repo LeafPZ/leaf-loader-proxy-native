@@ -1,0 +1,13 @@
+/*
+
+!/lib
+!/src
+
+!/.envrc
+!/.gitignore
+!/build.zig
+!/build.zig.zon
+!/flake.lock
+!/flake.nix
+!/LICENSE
+!/README.md
