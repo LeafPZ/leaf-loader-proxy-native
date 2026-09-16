@@ -15,6 +15,7 @@
 
         nativeBuildInputs = with pkgs; [
           zig
+          zls
           jdk25
         ];
 
