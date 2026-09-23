@@ -1,12 +1,11 @@
 /*
 
-!/lib
+!/.github
 !/src
 
-!/.envrc
+!/.cliff.toml
 !/.gitignore
-!/build.zig
-!/build.zig.zon
+!/CMakeLists.txt
 !/flake.lock
 !/flake.nix
 !/LICENSE
