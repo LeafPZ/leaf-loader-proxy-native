@@ -32,6 +32,6 @@ endif()
 set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
         MSVC_RUNTIME_LIBRARY "MultiThreadedDLL"
         INTERPROCEDURAL_OPTIMIZATION TRUE
-        OUTPUT_NAME "leaf"
+        OUTPUT_NAME "native-${PROJECT_VERSION}"
         PREFIX ""
 )
