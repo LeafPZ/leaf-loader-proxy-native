@@ -15,12 +15,12 @@ weird DLL search paths and the launcher doesn't correct for this behaviour.
 > [!IMPORTANT]
 > This native agent is only to be used for Windows as other platforms don't suffer from this issue.
 
-### Installation
+## Installation
 
 To install this to your game, you should be using [leaf-installer][LeafInstaller]. If you want to install it manually,
 you need to download the latest release and place the `leaf.dll` file into `$GAME_FOLDER/.leaf/lib`.
 
-### Usage
+## Usage
 
 The installer will help you with the following, but if you wish, you can do it manually:
 
@@ -30,7 +30,7 @@ number in this example may not be the same as the version of your installed vers
 
 If you need help with the layout of game arguments, you should read [Startup Parameters][StartupParameters].
 
-### Configuration
+## Configuration
 
 You can provide arguments to the native agent. Currently the entire arguments string will be used for the `jvm.dll`
 search path where the default is `.\\jre64\\bin\\server`. If you ever use a custom JVM to start the game, you will need
@@ -43,7 +43,7 @@ to edit this.
 | -------- | ---------- | ------------------------- |
 | N/A      | Positional | `.\\myjre64\\bin\\server` |
 
-### Development
+## Development
 
 You can build the project like so:
 
