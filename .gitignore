@@ -6,6 +6,7 @@
 !/.cliff.toml
 !/.gitignore
 !/CMakeLists.txt
+!/CMakePresets.json
 !/flake.lock
 !/flake.nix
 !/LICENSE

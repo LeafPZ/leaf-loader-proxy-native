@@ -1,0 +1,55 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+  workflow_call:
+  workflow_run:
+    workflows:
+      - manual
+    types:
+      - requested
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-changes:
+    runs-on: windows-latest
+    permissions:
+      contents: read
+    outputs:
+      build: ${{ steps.filter.outputs.build }}
+      code: ${{ steps.filter.outputs.code }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dorny/paths-filter@v4
+        id: filter
+        with:
+          filters: |
+            build:
+              - 'CMakeLists.txt'
+              - 'CMakePresets.json'
+            code:
+              - 'src/**'
+  build:
+    name: Build
+    runs-on: windows-latest
+    needs: check-changes
+    if: ${{ needs.check-changes.outputs.build == 'true' || needs.check-changes.outputs.code == 'true' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Setup CMake
+        uses: lukka/get-cmake@v4.4.2
+      - name: Run CMake
+        uses: lukka/run-cmake@v10
+        with:
+          configurePreset: release
+          buildPreset: release

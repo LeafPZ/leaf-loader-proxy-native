@@ -1,0 +1,52 @@
+name: Release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  pre:
+    runs-on: windows-latest
+    outputs:
+      # Assume pushes to tags are always full releases
+      is_full_release: ${{ (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) || github.event_name == 'workflow_dispatch' }}
+    steps:
+      - run: "true"
+  release:
+    name: Release
+    needs: pre
+    runs-on: windows-latest
+    environment: publishing
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup CMake
+        uses: lukka/get-cmake@v4.4.2
+
+      - name: Run CMake
+        uses: lukka/run-cmake@v10
+        with:
+          configurePreset: release
+          buildPreset: release
+      - name: Generate Changelog
+        if: needs.pre.outputs.is_full_release == 'true'
+        id: cliff
+        uses: orhun/git-cliff-action@v4
+        with:
+          config: ".cliff.toml"
+          args: --latest -v
+        env:
+          GITHUB_REPO: ${{ github.repository }}
+      - name: Create GitHub Release
+        if: needs.pre.outputs.is_full_release == 'true'
+        uses: softprops/action-gh-release@v3
+        with:
+          fail_on_unmatched_files: true
+          files: |
+            build/release/leaf.dll
+          body: ${{ steps.cliff.outputs.content }}

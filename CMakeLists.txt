@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 4.3)
-project(leaf_loader_proxy_native C VERSION 1.0.0)
+cmake_minimum_required(VERSION 4.1)
+project(leaf_loader_proxy_native LANGUAGES C VERSION 1.0.0)
 
 set(CMAKE_C_STANDARD 23)
 set(CMAKE_C_STANDARD_REQUIRED ON)
@@ -32,4 +32,5 @@ endif()
 set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
         MSVC_RUNTIME_LIBRARY "MultiThreadedDLL"
         INTERPROCEDURAL_OPTIMIZATION TRUE
+        OUTPUT_NAME "leaf"
 )

@@ -42,8 +42,8 @@ to edit this.
 You can build the project like so:
 
 ```shell
-cmake -G Ninja -DCMAKE_BUILD_TYPE=MinSizeRel -S . -B build
-cmake --build build --config MinSizeRel
+cmake --preset release
+cmake --build --preset release
 ```
 
 [LeafInstaller]: https://github.com/aoqia194/leaf-installer
