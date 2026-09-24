@@ -18,7 +18,7 @@ weird DLL search paths and the launcher doesn't correct for this behaviour.
 ## Installation
 
 To install this to your game, you should be using [leaf-installer][LeafInstaller]. If you want to install it manually,
-you need to download the latest release and place the `leaf.dll` file into `$GAME_FOLDER/.leaf/lib`.
+you need to download the latest release and place the `native-1.0.1.dll` file into `$GAME_FOLDER/.leaf/lib`.
 
 ## Usage
 
