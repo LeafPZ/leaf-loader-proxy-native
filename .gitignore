@@ -7,7 +7,5 @@
 !/.gitignore
 !/CMakeLists.txt
 !/CMakePresets.json
-!/flake.lock
-!/flake.nix
 !/LICENSE
 !/README.md

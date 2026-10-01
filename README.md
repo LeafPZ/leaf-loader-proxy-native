@@ -1,6 +1,10 @@
 <div align="center">
 
-**The native Java agent supporting [leaf-loader-proxy][LeafLoaderProxy]**
+<h1>
+    The native Java agent supporting
+    <img src="https://github.com/LeafPZ.png" width="24px" alt="LeafPZ Icon" style="border-radius: 50%;"/>
+    <a href="https://github.com/LeafPZ/leaf-loader-proxy">leaf-loader-proxy</a>
+</h1>
 
 ![License](https://img.shields.io/github/license/LeafPZ/leaf-loader-proxy-native?label=License)
 ![Build status](https://github.com/LeafPZ/leaf-loader-proxy-native/actions/workflows/build.yml/badge.svg?branch=main&label=build)
@@ -52,6 +56,5 @@ cmake --preset release
 cmake --build --preset release
 ```
 
-[LeafInstaller]: https://github.com/aoqia194/leaf-installer
-[LeafLoaderProxy]: https://github.com/aoqia194/leaf-loader-proxy
+[LeafInstaller]: https://github.com/LeafPZ/leaf-installer
 [StartupParameters]: https://pzwiki.net/wiki/Startup_parameters
