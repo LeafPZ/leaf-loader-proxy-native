@@ -4,18 +4,12 @@ on:
   push:
     # ignoring tags also ignores branches
     tags-ignore:
-      - "**"
+      - '**'
     branches:
-      - "**"
+      - '**'
   pull_request:
     branches:
-      - main
-  workflow_call:
-  workflow_run:
-    workflows:
-      - manual
-    types:
-      - requested
+      - 'main'
 
 permissions:
   contents: read
@@ -33,8 +27,11 @@ jobs:
       build: ${{ steps.filter.outputs.build }}
       code: ${{ steps.filter.outputs.code }}
     steps:
-      - uses: actions/checkout@v7
-      - uses: dorny/paths-filter@v4
+      - name: Checkout
+        # v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        # v4
+      - uses: dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d
         id: filter
         with:
           filters: |
@@ -50,11 +47,14 @@ jobs:
     if: ${{ needs.check-changes.outputs.build == 'true' || needs.check-changes.outputs.code == 'true' }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        # v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - name: Setup CMake
-        uses: lukka/get-cmake@v4.4.2
+        # v4.4.2
+        uses: lukka/get-cmake@fffaaafeea488556c2c12dad60690008bc1caacb
       - name: Run CMake
-        uses: lukka/run-cmake@v10
+        # v10
+        uses: lukka/run-cmake@5d55ea7949e25f69f0ecb516d8d572297e03a956
         with:
           configurePreset: release
           buildPreset: release
