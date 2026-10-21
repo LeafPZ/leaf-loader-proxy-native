@@ -52,9 +52,11 @@ jobs:
       - name: Setup CMake
         # v4.4.2
         uses: lukka/get-cmake@fffaaafeea488556c2c12dad60690008bc1caacb
-      - name: Run CMake
-        # v10
-        uses: lukka/run-cmake@5d55ea7949e25f69f0ecb516d8d572297e03a956
-        with:
-          configurePreset: release
-          buildPreset: release
+      - name: Build
+        shell: pwsh
+        # Taken from https://github.com/tetsuh/sitos/blob/59d84bf7ebf29f0d424d484ef38ebb9204dbf9a7/.github/workflows/ci.yml
+        # For some reason, the CI uses MinGW by default instead of MSVC, so we get inflated binary for no reason.
+        run: |
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $vsPath = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+          cmd /c "call `"$vsPath\VC\Auxiliary\Build\vcvars64.bat`" && cmake --preset release && cmake --build --preset release"
