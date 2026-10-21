@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 4.1)
-project(leaf_loader_proxy_native LANGUAGES C VERSION 1.0.1)
+project(leaf_loader_proxy_native LANGUAGES C VERSION 1.0.2)
 
 set(CMAKE_C_STANDARD 23)
 set(CMAKE_C_STANDARD_REQUIRED ON)
