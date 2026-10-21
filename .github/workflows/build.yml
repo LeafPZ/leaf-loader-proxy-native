@@ -61,6 +61,6 @@ jobs:
           $VsInstallPath = & $VsWhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
           $DevShellPath = Join-Path $VsInstallPath "Common7\Tools\Microsoft.VisualStudio.DevShell.dll"
           Import-Module $DevShellPath -Scope Local
-          Enter-VsDevShell -Arch amd64 -HostArch amd64 -VsInstallPath $VsInstallPath -SkipAutomaticLocation
-          Write-Host "Successfully loaded vcvars64 environment via vswhere." -ForegroundColor Green
-          cmd /c "call `"$vsPath\VC\Auxiliary\Build\vcvars64.bat`" && cmake --preset release && cmake --build --preset release"
+          Enter-VsDevShell -Arch amd64 -Hos rch amd64 -VsInstallPath $VsInstallPath -SkipAutomaticLocation
+          & cmake --preset release
+          & cmake --build --preset release
