@@ -63,5 +63,8 @@ jobs:
           $DevShellPath = Join-Path $VsInstallPath "Common7\Tools\Microsoft.VisualStudio.DevShell.dll"
           Import-Module $DevShellPath -Scope Local
           Enter-VsDevShell -Arch amd64 -HostArch amd64 -VsInstallPath $VsInstallPath -SkipAutomaticLocation
-          & cmake --preset release
-          & cmake --build --preset release
+          cmake --preset release
+          cmake --build --preset release
+          ls ./
+          ls ./build/
+          ls ./build/release/
