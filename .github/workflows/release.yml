@@ -30,11 +30,16 @@ jobs:
         uses: lukka/get-cmake@fffaaafeea488556c2c12dad60690008bc1caacb
       - name: Build
         shell: pwsh
-        # Taken from https://github.com/tetsuh/sitos/blob/59d84bf7ebf29f0d424d484ef38ebb9204dbf9a7/.github/workflows/ci.yml
+        # Modified from https://github.com/tetsuh/sitos/blob/59d84bf7ebf29f0d424d484ef38ebb9204dbf9a7/.github/workflows/ci.yml
         # For some reason, the CI uses MinGW by default instead of MSVC, so we get inflated binary for no reason.
         run: |
-          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
-          $vsPath = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+          $VsWhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $VsInstallPath = & $VsWhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+          $DevShellPath = Join-Path $VsInstallPath "Common7\Tools\Microsoft.VisualStudio.DevShell.dll"
+          Import-Module $DevShellPath -Scope Local
+          Enter-VsDevShell -Arch amd64 -HostArch amd64 -VsInstallPath $VsInstallPath -SkipAutomaticLocation
+          cmake --preset release
+          cmake --build --preset release
       - name: Generate Changelog
         if: needs.pre.outputs.is_full_release == 'true'
         id: cliff
